@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Alunos</h1>
+<a class="btn" href="{% url 'refeitorio:aluno_create' %}">+ Novo aluno</a>
+<table>
+    <tr><th>Nome</th><th>Matrícula</th><th>Turma</th><th>Ativo</th><th>Ações</th></tr>
+    {% for aluno in aluno_list %}
+    <tr>
+        <td>{{ aluno.nome_aluno }}</td>
+        <td>{{ aluno.matricula }}</td>
+        <td>{{ aluno.turma }}</td>
+        <td>{{ aluno.situacao|yesno:"Sim,Não" }}</td>
+        <td>
+            <a href="{% url 'refeitorio:aluno_detail' aluno.pk %}">Ver</a> |
+            <a href="{% url 'refeitorio:aluno_update' aluno.pk %}">Editar</a> |
+            <a href="{% url 'refeitorio:aluno_delete' aluno.pk %}">Excluir</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="5">Nenhum aluno cadastrado.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

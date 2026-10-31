@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ turma.turma }}</h1>
+<p><strong>Dia da semana:</strong> {{ turma.dia_semana }}</p>
+<p><strong>Turno:</strong> {{ turma.turno }}</p>
+
+<h3>Alunos da turma</h3>
+<ul>
+    {% for aluno in turma.alunos.all %}
+        <li>{{ aluno.nome_aluno }} ({{ aluno.matricula }})</li>
+    {% empty %}
+        <li>Nenhum aluno nesta turma.</li>
+    {% endfor %}
+</ul>
+
+<a class="btn" href="{% url 'refeitorio:turma_update' turma.pk %}">Editar</a>
+<a class="btn btn-gray" href="{% url 'refeitorio:turma_list' %}">Voltar</a>
+{% endblock %}

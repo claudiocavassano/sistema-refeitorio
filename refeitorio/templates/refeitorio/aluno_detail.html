@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ aluno.nome_aluno }}</h1>
+<p><strong>Matrícula:</strong> {{ aluno.matricula }}</p>
+<p><strong>Turma:</strong> {{ aluno.turma }}</p>
+<p><strong>Ativo:</strong> {{ aluno.situacao|yesno:"Sim,Não" }}</p>
+
+<a class="btn" href="{% url 'refeitorio:aluno_update' aluno.pk %}">Editar</a>
+<a class="btn btn-gray" href="{% url 'refeitorio:aluno_list' %}">Voltar</a>
+{% endblock %}

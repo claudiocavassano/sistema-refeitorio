@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Turmas</h1>
+<a class="btn" href="{% url 'refeitorio:turma_create' %}">+ Nova turma</a>
+<table>
+    <tr><th>Turma</th><th>Dia da semana</th><th>Turno</th><th>Ações</th></tr>
+    {% for turma in turma_list %}
+    <tr>
+        <td>{{ turma.turma }}</td>
+        <td>{{ turma.dia_semana }}</td>
+        <td>{{ turma.turno }}</td>
+        <td>
+            <a href="{% url 'refeitorio:turma_detail' turma.pk %}">Ver</a> |
+            <a href="{% url 'refeitorio:turma_update' turma.pk %}">Editar</a> |
+            <a href="{% url 'refeitorio:turma_delete' turma.pk %}">Excluir</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">Nenhuma turma cadastrada.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

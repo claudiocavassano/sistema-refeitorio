@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Sistema Refeitório</h1>
+<p>
+    <a class="btn" href="{% url 'refeitorio:aluno_list' %}">Alunos</a>
+    <a class="btn" href="{% url 'refeitorio:turma_list' %}">Turmas</a>
+</p>
+{% endblock %}
