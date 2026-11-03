@@ -14,3 +14,11 @@ class AlunoAdmin(admin.ModelAdmin):
     list_display = ('nome_aluno', 'matricula', 'turma', 'situacao')
     list_filter = ('turma', 'situacao')
     search_fields = ('nome_aluno', 'matricula')
+
+from .models import Aluno, Turma, Refeicao
+
+
+@admin.register(Refeicao)
+class RefeicaoAdmin(admin.ModelAdmin):
+    list_display = ('aluno', 'data')
+    list_filter = ('data',)

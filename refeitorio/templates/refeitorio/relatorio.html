@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Relatório</h1>
+
+<form method="get">
+    <label>Dia da semana:
+        <select name="dia">
+            <option value="">-- selecione --</option>
+            {% for d in dias %}
+            <option value="{{ d }}" {% if d == dia %}selected{% endif %}>{{ d }}</option>
+            {% endfor %}
+        </select>
+    </label>
+    <label>Data (opcional):
+        <input type="date" name="data" value="{{ data|date:'Y-m-d' }}">
+    </label>
+    <button type="submit" class="btn">Gerar</button>
+</form>
+
+{% if turmas is not None and dia %}
+    <h2>{{ dia }}</h2>
+    <p><strong>Quantidade de alunos esperados: {{ total_esperados }}</strong></p>
+
+    <table>
+        <tr><th>Turma</th><th>Alunos esperados</th><th>Refeições realizadas</th></tr>
+        {% for t in turmas %}
+        <tr>
+            <td>{{ t.turma }}</td>
+            <td>{{ t.esperados }}</td>
+            <td>{{ t.realizadas }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3">Nenhuma turma programada para este dia.</td></tr>
+        {% endfor %}
+        <tr>
+            <th>Total</th>
+            <th>{{ total_esperados }}</th>
+            <th>{{ total_realizadas }}</th>
+        </tr>
+    </table>
+{% endif %}
+{% endblock %}

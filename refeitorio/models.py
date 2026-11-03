@@ -41,3 +41,24 @@ class Aluno(models.Model):
 
     def __str__(self):
         return f'{self.nome_aluno} ({self.matricula})'
+
+from django.utils import timezone
+
+
+class Refeicao(models.Model):
+    aluno = models.ForeignKey(
+        Aluno,
+        on_delete=models.CASCADE,
+        related_name='refeicoes',
+        verbose_name='Aluno',
+    )
+    data = models.DateField('Data', default=timezone.localdate)
+
+    class Meta:
+        ordering = ['-data']
+        unique_together = ('aluno', 'data')  # Tem que ser 1x almoço - pra 1x aluno - por dia.
+        verbose_name = 'Refeição'
+        verbose_name_plural = 'Refeições'
+
+    def __str__(self):
+        return f'{self.aluno.nome_aluno} - {self.data:%d/%m/%Y}'

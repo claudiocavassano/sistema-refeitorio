@@ -20,4 +20,12 @@ urlpatterns = [
     path('alunos/<int:pk>/', views.AlunoDetailView.as_view(), name='aluno_detail'),
     path('alunos/<int:pk>/editar/', views.AlunoUpdateView.as_view(), name='aluno_update'),
     path('alunos/<int:pk>/excluir/', views.AlunoDeleteView.as_view(), name='aluno_delete'),
+
+    # Refeições
+    path('refeicoes/', views.RefeicaoListView.as_view(), name='refeicao_list'),
+    path('refeicoes/nova/', views.RefeicaoCreateView.as_view(), name='refeicao_create'),
+    path('refeicoes/<int:pk>/excluir/', views.RefeicaoDeleteView.as_view(), name='refeicao_delete'),
+
+    # Relatório
+    path('relatorio/', views.RelatorioView.as_view(), name='relatorio'),
 ]
